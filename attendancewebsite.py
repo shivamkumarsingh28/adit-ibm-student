@@ -32,10 +32,10 @@ def SaeeAM_query(query):
 sheet_url = "https://docs.google.com/spreadsheets/d/1HfViq19h-Kb04P0WEyLBZi04ApcfCq3JBZUWN_Ajeh8/edit?usp=sharing"
 Database = SaeeAM_query(f'SELECT * FROM "{sheet_url}"')
 
-def datacheck(Database, name, email):
+def datacheck(Database, email):
     for row in Database:
         st.write(name)
-        if row.Email == email or row.Name == name:
+        if row.Email == email:
             return row.Url
         
 # col1, col2, col3 = st.columns(3)
@@ -77,34 +77,21 @@ cont1col1, cont1col2= cont1.columns([3,2])
 
 
 with cont1col1:
+    st.title("Attadance Form Fill Up")
+    email = st.text_input(label="", placeholder="Enter Email Here")
+    submitted = st.button("Submit")
+    
+    if submitted:
+        check= datacheck(Database, email)
+        st.markdown(check)
+        st.success('Done')
+        st.balloons()
 
 
-    st.subheader("""SaeeAM IBM ADIT BATCH- 2022-2024""")
-    st.write("Indian Collage Student Batch")
-    options = st.multiselect(
-     'Select Services How May I Help You',
-     ['computer science','SaeeAM Team', 'Javascripts', 'HTML', 'CSS','Python', 'Cloud Computing','More & More'],['computer science','SaeeAM Team', 'Javascripts', 'HTML', 'CSS','Python', 'Cloud Computing','More & More'])
-
-    st.code(options)
+    
 with cont1col2:
     youths =  "https://assets4.lottiefiles.com/packages/lf20_ljotbiif.json"
     lottie_json_youth = load_lottieurl(youths)
 
     st_lottie(lottie_json_youth)
         
-
-                
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.write("Fill Data For Ibm Adit STudent Attendance")
-with col2:
-    email = st.text_input(label="", placeholder="Enter Email Here", key="ibmname")
-with col3:
-    name = st.text_input(label="", placeholder="Enter Name Here")
-    
-
-# print(type(name))
-check= datacheck(Database, name, email)
-print(check)
-st.write(check)
