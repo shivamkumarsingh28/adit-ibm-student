@@ -58,7 +58,7 @@ with st.sidebar:
             number= st.text_input(label="Number",value="", max_chars=10, placeholder="Enter Number Here", type="default", key="number")
             message= st.text_area(label="Message",value="", max_chars=1000, placeholder="Enter Number Here", key="message")
 
-            submitted = st.form_submit_button("Hire")
+            submitted = st.form_submit_button("Send")
           
             
             if submitted:
